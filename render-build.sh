@@ -1,21 +1,39 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Actualizar repositorios
-apt-get update
-
-# Instalar librerías necesarias para Playwright
-apt-get install -y \
-  libgtk-4-1 \
-  libgraphene-1.0-0 \
-  libgstreamer-gl1.0-0 \
-  gstreamer1.0-libav \
-  libenchant-2-2 \
+# Instalar dependencias del sistema necesarias para Playwright
+apt-get update && apt-get install -y \
+  wget \
+  libnss3 \
+  libxss1 \
+  libasound2 \
+  libatk1.0-0 \
+  libatk-bridge2.0-0 \
+  libcups2 \
+  libdbus-1-3 \
+  libdrm2 \
+  libxcomposite1 \
+  libxdamage1 \
+  libxrandr2 \
+  libgbm1 \
+  libgtk-3-0 \
+  libglib2.0-0 \
+  libx11-xcb1 \
+  libxshmfence1 \
+  libxext6 \
+  libxi6 \
+  libxtst6 \
+  libpangocairo-1.0-0 \
+  libpango-1.0-0 \
+  fonts-liberation \
+  libappindicator3-1 \
   libsecret-1-0 \
-  libmanette-0.2-0 \
-  libgles2-mesa \
-  libgstreamer-plugins-base1.0-0 \
-  libgstreamer-plugins-good1.0-0
+  libwayland-client0 \
+  libwayland-egl1 \
+  libxinerama1 \
+  libxcursor1
 
-# Luego continuar con instalación de paquetes de Python y Playwright
+# Instalar dependencias de Python
 pip install -r requirements.txt
-playwright install
+
+# Instalar navegadores de Playwright
+python -m playwright install --with-deps
